@@ -1260,7 +1260,7 @@
 <div class="modal-backdrop" id="shareModal">
   <div class="modal-card wide-modal">
     <div class="modal-header">
-      <h3 class="modal-title">🚀 Draft Post &amp; Share Frame</h3>
+      <h3 class="modal-title" id="shareModalTitle">🚀 Draft Post &amp; Share Frame</h3>
       <button class="modal-close" id="shareModalClose">&times;</button>
     </div>
     <div class="modal-body">
@@ -2711,11 +2711,22 @@
     return shareDraftCaption ? shareDraftCaption.value.trim() : EXACT_CAPTION;
   }
 
+  const shareModalTitle = document.getElementById('shareModalTitle');
+  const CAPTION_FRAME = 'Locked in: Hacker House Goa #FrameInGoa #hackerhousegoa @247pmstudio';
+  const CAPTION_ID = 'Official Team Member ID Card — Hacker House Goa #IDCard #HHGOA #hackerhousegoa @247pmstudio';
+
+  function openShareModal(imageDataUrl, frameType) {
+    const isId = frameType === 'id';
+    shareModalPreviewImg.src = imageDataUrl;
+    if(shareModalTitle) shareModalTitle.textContent = isId ? '🪪 Draft Post & Share Team ID Card' : '🚀 Draft Post & Share Profile Frame';
+    if(shareDraftCaption) shareDraftCaption.value = isId ? CAPTION_ID : CAPTION_FRAME;
+    shareModal.classList.add('show');
+  }
+
   shareTriggerBtn.addEventListener('click', () => {
     if(shareTriggerBtn.disabled) return;
     const dataUrl = canvas.toDataURL('image/png');
-    shareModalPreviewImg.src = dataUrl;
-    shareModal.classList.add('show');
+    openShareModal(dataUrl, mode);
   });
 
   shareModalClose.addEventListener('click', () => shareModal.classList.remove('show'));
@@ -2764,7 +2775,7 @@
       if(navigator.canShare && navigator.canShare({ files: [file] })){
         try {
           await navigator.share({
-            title: 'Hacker House Goa Frame',
+            title: mode === 'id' ? 'Hacker House Goa — Team ID Card' : 'Hacker House Goa Frame',
             text: caption,
             files: [file]
           });
@@ -2969,8 +2980,7 @@
       });
 
       card.querySelector('.card-share-btn').addEventListener('click', () => {
-        shareModalPreviewImg.src = framePreview;
-        shareModal.classList.add('show');
+        openShareModal(framePreview, item.frameType || 'frame');
       });
 
       showcaseGrid.appendChild(card);
@@ -3022,8 +3032,7 @@
       });
 
       card.querySelector('.card-sh-btn').addEventListener('click', () => {
-        shareModalPreviewImg.src = f.imageUrl;
-        shareModal.classList.add('show');
+        openShareModal(f.imageUrl, f.frameType || 'frame');
       });
 
       mySavedGrid.appendChild(card);
