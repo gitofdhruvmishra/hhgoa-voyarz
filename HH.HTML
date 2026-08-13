@@ -339,7 +339,7 @@
     background: transparent;
     color: var(--muted);
     border: 1px dashed var(--line);
-    border-radius: 9px;
+    border-radius: 99px;
     padding: 10px;
     cursor: pointer;
     transition: all .12s ease;
@@ -2025,16 +2025,15 @@
           'text/plain': new Blob([EXACT_CAPTION], { type: 'text/plain' })
         });
         await navigator.clipboard.write([item]);
-        showToast('Copied IMAGE & CAPTION to clipboard! 🖼️+📋 (Paste into any post composer)');
+        showToast('Copied IMAGE & CAPTION to clipboard! 🖼️+📋 (Press Ctrl+V / Cmd+V in draft)');
       }, 'image/png');
     } catch(err) {
-      // Fallback: copy caption + download image
       await navigator.clipboard.writeText(EXACT_CAPTION);
       const link = document.createElement('a');
       link.download = fileBaseName();
       link.href = shareModalPreviewImg.src;
       link.click();
-      showToast('Downloaded Image & Copied Caption to clipboard! 📥+📋');
+      showToast('Downloaded Image & Copied Caption! 📥+📋');
     }
   });
 
@@ -2055,11 +2054,10 @@
           showToast('Shared successfully! 🎉');
         } catch(err) {
           if(err && err.name !== 'AbortError'){
-            showToast('Share failed. Use platform buttons below.');
+            copyBothBtn.click();
           }
         }
       } else {
-        // Fallback for browsers without file share support
         copyBothBtn.click();
       }
     }, 'image/png');
@@ -2081,8 +2079,8 @@
       const fileName = fileBaseName();
       const file = new File([blob], fileName, { type: 'image/png' });
 
-      // First attempt native share with actual image file + text payload
-      if(navigator.canShare && navigator.canShare({ files: [file] })){
+      // On Mobile devices, attempt native share with actual image file + text payload first
+      if(isMobileUA && navigator.canShare && navigator.canShare({ files: [file] })){
         try {
           await navigator.share({
             title: 'Hacker House Goa Frame',
@@ -2095,7 +2093,7 @@
         }
       }
 
-      // Copy image blob & text to clipboard
+      // Copy image blob & text to clipboard for instant Ctrl+V / Cmd+V paste on PC
       try {
         const item = new ClipboardItem({
           'image/png': blob,
@@ -2106,31 +2104,56 @@
         try { await navigator.clipboard.writeText(EXACT_CAPTION); } catch(e2){}
       }
 
-      // Download image file for local attach
+      // Auto-download image file so user has PNG ready in gallery/downloads
       const a = document.createElement('a');
       a.href = imageUrl;
       a.download = fileName;
       a.click();
 
+      // Platform specific Web/App deep linking
+      const textEncoded = encodeURIComponent(EXACT_CAPTION);
+
       if(platform === 'twitter'){
-        const text = encodeURIComponent(EXACT_CAPTION);
-        window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank', 'noopener,noreferrer');
-        showToast('Image downloaded & caption copied! Select image & paste in X (Twitter) 🚀');
-      } else if(platform === 'whatsapp'){
-        const text = encodeURIComponent(EXACT_CAPTION);
-        window.open(`https://wa.me/?text=${text}`, '_blank', 'noopener,noreferrer');
-        showToast('Image downloaded & caption copied! Attach image in WhatsApp 💬');
-      } else if(platform === 'linkedin'){
-        const pageUrl = encodeURIComponent(location.href);
-        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`, '_blank', 'noopener,noreferrer');
-        showToast('Image downloaded & caption copied! Attach image in LinkedIn 💼');
+        if(isMobileUA){
+          window.location.href = `twitter://post?message=${textEncoded}`;
+          setTimeout(() => {
+            window.open(`https://twitter.com/intent/tweet?text=${textEncoded}`, '_blank', 'noopener,noreferrer');
+          }, 1200);
+        } else {
+          window.open(`https://twitter.com/intent/tweet?text=${textEncoded}`, '_blank', 'noopener,noreferrer');
+        }
+        showToast('Opened X (Twitter)! Image & caption copied — press Ctrl+V to attach image 🚀');
       } else if(platform === 'instagram'){
         if(isMobileUA){
           window.location.href = 'instagram://app';
+          setTimeout(() => {
+            window.open('https://www.instagram.com', '_blank', 'noopener,noreferrer');
+          }, 1200);
         } else {
           window.open('https://www.instagram.com', '_blank', 'noopener,noreferrer');
         }
-        alert('Image downloaded & caption copied! 📸\n\nOpen Instagram, create a post/story, select your downloaded frame image and paste the caption: "Locked in: Hacker House Goa #FrameInGoa #hackerhousegoa @247pmstudio"!');
+        alert('Opened Instagram! 📸\n\n1. Your frame image is downloaded to your device.\n2. Your caption is copied to clipboard: "Locked in: Hacker House Goa #FrameInGoa #hackerhousegoa @247pmstudio"\n3. Click Create (+) on Instagram, select your downloaded frame image, and paste (Ctrl+V / Cmd+V) your caption!');
+      } else if(platform === 'linkedin'){
+        const pageUrl = encodeURIComponent(location.href);
+        if(isMobileUA){
+          window.location.href = `linkedin://sharing/share-offsite/?url=${pageUrl}`;
+          setTimeout(() => {
+            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`, '_blank', 'noopener,noreferrer');
+          }, 1200);
+        } else {
+          window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`, '_blank', 'noopener,noreferrer');
+        }
+        showToast('Opened LinkedIn! Image & caption copied — press Ctrl+V to attach 💼');
+      } else if(platform === 'whatsapp'){
+        if(isMobileUA){
+          window.location.href = `whatsapp://send?text=${textEncoded}`;
+          setTimeout(() => {
+            window.open(`https://wa.me/?text=${textEncoded}`, '_blank', 'noopener,noreferrer');
+          }, 1200);
+        } else {
+          window.open(`https://web.whatsapp.com/send?text=${textEncoded}`, '_blank', 'noopener,noreferrer');
+        }
+        showToast('Opened WhatsApp! Image downloaded & caption copied 💬');
       }
     }, 'image/png');
   }
@@ -2291,7 +2314,7 @@
     if(toastTimer) clearTimeout(toastTimer);
     toastTimer = setTimeout(() => {
       toast.classList.remove('show');
-    }, 3200);
+    }, 3800);
   }
 
   // Ensure fonts ready before initial paint
