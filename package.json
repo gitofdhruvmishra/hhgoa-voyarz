@@ -1,0 +1,9 @@
+{
+  "name": "hacker-house-goa",
+  "version": "1.0.0",
+  "description": "Hacker House Goa — Team Frame & ID Card Generator with Auth & Sharing",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx -y serve -l 3000 ."
+  }
+}
