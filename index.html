@@ -2841,63 +2841,48 @@
 
   async function shareToPlatform(platform, imageUrl){
     const caption = getActiveCaption();
-    canvas.toBlob(async (blob) => {
-      if(!blob) return;
-      const fileName = fileBaseName();
-      const file = new File([blob], fileName, { type: 'image/png' });
+    const textEncoded = encodeURIComponent(caption);
 
-      if(isMobileUA && navigator.canShare && navigator.canShare({ files: [file] })){
-        try {
-          await navigator.share({
-            title: 'Hacker House Goa Frame',
-            text: caption,
-            files: [file]
-          });
-          return;
-        } catch(err){
-          if(err && err.name === 'AbortError') return;
+    // Copy caption & image blob to clipboard silently if browser supports ClipboardItem
+    try {
+      canvas.toBlob(async (blob) => {
+        if(blob && navigator.clipboard && window.ClipboardItem){
+          try {
+            const item = new ClipboardItem({
+              'image/png': blob,
+              'text/plain': new Blob([caption], { type: 'text/plain' })
+            });
+            await navigator.clipboard.write([item]);
+          } catch(e) {
+            try { await navigator.clipboard.writeText(caption); } catch(e2){}
+          }
         }
-      }
+      }, 'image/png');
+    } catch(err){
+      try { await navigator.clipboard.writeText(caption); } catch(e){}
+    }
 
-      try {
-        const item = new ClipboardItem({
-          'image/png': blob,
-          'text/plain': new Blob([caption], { type: 'text/plain' })
-        });
-        await navigator.clipboard.write([item]);
-      } catch(e) {
-        try { await navigator.clipboard.writeText(caption); } catch(e2){}
-      }
-
-      const a = document.createElement('a');
-      a.href = imageUrl;
-      a.download = fileName;
-      a.click();
-
-      const textEncoded = encodeURIComponent(caption);
-
-      if(platform === 'twitter'){
-        if(isMobileUA){
-          window.location.href = `twitter://post?message=${textEncoded}`;
-          setTimeout(() => {
-            window.open(`https://twitter.com/intent/tweet?text=${textEncoded}`, '_blank', 'noopener,noreferrer');
-          }, 1200);
-        } else {
+    if(platform === 'twitter'){
+      if(isMobileUA){
+        window.location.href = `twitter://post?message=${textEncoded}`;
+        setTimeout(() => {
           window.open(`https://twitter.com/intent/tweet?text=${textEncoded}`, '_blank', 'noopener,noreferrer');
-        }
-        showToast('Opened X (Twitter)! Image & caption copied — press Ctrl+V to attach 🚀');
-      } else if(platform === 'whatsapp'){
-        if(isMobileUA){
-          window.location.href = `whatsapp://send?text=${textEncoded}`;
-          setTimeout(() => {
-            window.open(`https://wa.me/?text=${textEncoded}`, '_blank', 'noopener,noreferrer');
-          }, 1200);
-        } else {
-          window.open(`https://web.whatsapp.com/send?text=${textEncoded}`, '_blank', 'noopener,noreferrer');
-        }
-        showToast('Opened WhatsApp! Image downloaded & caption copied 💬');
+        }, 800);
+      } else {
+        window.open(`https://twitter.com/intent/tweet?text=${textEncoded}`, '_blank', 'noopener,noreferrer');
       }
-    }, 'image/png');
+      showToast('Opened X (Twitter) draft! Caption pre-filled 🚀');
+    } else if(platform === 'whatsapp'){
+      if(isMobileUA){
+        window.location.href = `whatsapp://send?text=${textEncoded}`;
+        setTimeout(() => {
+          window.open(`https://api.whatsapp.com/send?text=${textEncoded}`, '_blank', 'noopener,noreferrer');
+        }, 800);
+      } else {
+        window.open(`https://api.whatsapp.com/send?text=${textEncoded}`, '_blank', 'noopener,noreferrer');
+      }
+      showToast('Opened WhatsApp draft! Caption pre-filled 💬');
+    }
   }
 
   // ---------- SHOWCASE & MY SAVED GRIDS ----------
