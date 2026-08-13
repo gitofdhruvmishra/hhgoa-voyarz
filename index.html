@@ -2854,43 +2854,34 @@
     const caption = getActiveCaption();
     const textEncoded = encodeURIComponent(caption);
 
-    // Copy caption & image blob to clipboard silently if browser supports ClipboardItem
-    try {
-      canvas.toBlob(async (blob) => {
-        if(blob && navigator.clipboard && window.ClipboardItem){
-          try {
-            const item = new ClipboardItem({
-              'image/png': blob,
-              'text/plain': new Blob([caption], { type: 'text/plain' })
-            });
-            await navigator.clipboard.write([item]);
-          } catch(e) {
-            try { await navigator.clipboard.writeText(caption); } catch(e2){}
-          }
-        }
-      }, 'image/png');
-    } catch(err){
-      try { await navigator.clipboard.writeText(caption); } catch(e){}
-    }
+    // Silently copy caption to clipboard
+    try { await navigator.clipboard.writeText(caption); } catch(e){}
 
     if(platform === 'twitter'){
+      const tweetUrl = `https://twitter.com/intent/tweet?text=${textEncoded}`;
       if(isMobileUA){
-        window.location.href = `twitter://post?message=${textEncoded}`;
-        setTimeout(() => {
-          window.open(`https://twitter.com/intent/tweet?text=${textEncoded}`, '_blank', 'noopener,noreferrer');
-        }, 800);
+        // Try native app deep link, fallback to web after delay
+        const appLink = document.createElement('a');
+        appLink.href = `twitter://post?message=${textEncoded}`;
+        appLink.target = '_blank';
+        appLink.rel = 'noopener noreferrer';
+        appLink.click();
+        setTimeout(() => window.open(tweetUrl, '_blank', 'noopener,noreferrer'), 1200);
       } else {
-        window.open(`https://twitter.com/intent/tweet?text=${textEncoded}`, '_blank', 'noopener,noreferrer');
+        window.open(tweetUrl, '_blank', 'noopener,noreferrer');
       }
       showToast('Opened X (Twitter) draft! Caption pre-filled 🚀');
     } else if(platform === 'whatsapp'){
+      const waUrl = `https://api.whatsapp.com/send?text=${textEncoded}`;
       if(isMobileUA){
-        window.location.href = `whatsapp://send?text=${textEncoded}`;
-        setTimeout(() => {
-          window.open(`https://api.whatsapp.com/send?text=${textEncoded}`, '_blank', 'noopener,noreferrer');
-        }, 800);
+        const appLink = document.createElement('a');
+        appLink.href = `whatsapp://send?text=${textEncoded}`;
+        appLink.target = '_blank';
+        appLink.rel = 'noopener noreferrer';
+        appLink.click();
+        setTimeout(() => window.open(waUrl, '_blank', 'noopener,noreferrer'), 1200);
       } else {
-        window.open(`https://api.whatsapp.com/send?text=${textEncoded}`, '_blank', 'noopener,noreferrer');
+        window.open(waUrl, '_blank', 'noopener,noreferrer');
       }
       showToast('Opened WhatsApp draft! Caption pre-filled 💬');
     }
