@@ -666,6 +666,245 @@
   .social-btn[data-platform="twitter"]:hover { border-color: #161B22; background: #F4F6FA; color: #161B22; }
   .social-btn[data-platform="whatsapp"]:hover { border-color: #25D366; background: #F0FDF4; color: #16A34A; }
 
+  /* Wide Modal & Platform Guidance */
+  .modal-card.wide-modal { max-width: 680px; }
+  
+  .draft-preview-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 16px;
+    background: var(--bg);
+    border: 1.5px solid var(--line);
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 18px;
+  }
+  @media (max-width: 580px) {
+    .draft-preview-grid { grid-template-columns: 1fr; }
+  }
+
+  .draft-img-wrap {
+    width: 100%;
+    height: 180px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #000;
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .draft-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .caption-textarea {
+    width: 100%;
+    height: 100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    line-height: 1.4;
+    padding: 10px;
+    border: 1.5px solid var(--line);
+    border-radius: 8px;
+    background: #fff;
+    color: var(--ink);
+    resize: vertical;
+    box-sizing: border-box;
+  }
+  .caption-textarea:focus { outline: none; border-color: var(--primary); }
+
+  .platform-card {
+    background: #fff;
+    border: 1.5px solid var(--line);
+    border-radius: 12px;
+    padding: 14px;
+    margin-top: 14px;
+  }
+  .platform-card.notice-card {
+    background: #FFFBEB;
+    border-color: #FCD34D;
+  }
+  .platform-card.ig-card {
+    background: #FDF2F5;
+    border-color: #FBCFE8;
+  }
+  .platform-card.li-card {
+    background: #F0F7FF;
+    border-color: #BAE6FD;
+  }
+  
+  .platform-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+  }
+  .badge-warning { background: #FEF3C7; color: #92400E; border: 1px solid #F59E0B; }
+  .badge-success { background: #D1FAE5; color: #065F46; border: 1px solid #10B981; }
+  .badge-info { background: #E0F2FE; color: #075985; border: 1px solid #0EA5E9; }
+
+  .manual-steps-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin: 12px 0;
+  }
+  @media (max-width: 580px) {
+    .manual-steps-list { grid-template-columns: 1fr; }
+  }
+  .step-pill {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .step-num {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* Admin Route Dashboard Styles */
+  .admin-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  @media (max-width: 860px) {
+    .admin-metrics { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .admin-metrics { grid-template-columns: 1fr; }
+  }
+
+  .metric-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .metric-icon {
+    width: 46px; height: 46px;
+    border-radius: 12px;
+    background: var(--accent-soft);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .metric-val { font-size: 24px; font-weight: 700; color: var(--ink); line-height: 1.1; }
+  .metric-lbl { font-size: 12px; color: var(--muted); font-weight: 500; margin-top: 2px; }
+
+  .admin-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+
+  .admin-table-wrap {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: var(--shadow-sm);
+    overflow-x: auto;
+  }
+  .admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 13.5px;
+  }
+  .admin-table th {
+    background: #FAFCFF;
+    color: var(--muted);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line);
+  }
+  .admin-table td {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: middle;
+    color: var(--ink);
+  }
+  .admin-table tr:last-child td { border-bottom: none; }
+  .admin-table tr:hover td { background: #F8FAFC; }
+
+  .user-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .user-cell-avatar {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .role-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--ink);
+    border: 1px solid var(--line);
+  }
+  .role-badge.admin-badge {
+    background: #FEE2E2;
+    color: #991B1B;
+    border-color: #FCA5A5;
+  }
+
+  .action-btn-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
   /* Toast notification */
   .toast {
     position: fixed;
@@ -735,6 +974,7 @@
       <button class="tab-btn" id="tabId" data-view="generator" data-mode="id">Team ID Card</button>
       <button class="tab-btn" id="tabShowcase" data-view="showcase">Community Showcase</button>
       <button class="tab-btn" id="tabMySaved" data-view="my-saved" style="display:none;">My Saved Cards</button>
+      <button class="tab-btn" id="tabAdmin" data-view="admin">🛡️ Admin Portal</button>
     </div>
     <div class="showcase-badge">Locked In: Hacker House Goa #FrameInGoa</div>
   </div>
@@ -865,6 +1105,89 @@
     </div>
   </div>
 
+  <!-- VIEW 4: ADMIN PORTAL ROUTE -->
+  <div class="view-content" id="viewAdmin">
+    <div class="showcase-header">
+      <div>
+        <h2 style="font-size:22px; font-weight:700; margin:0 0 4px 0;">🛡️ Platform Admin Dashboard</h2>
+        <div style="color:var(--muted); font-size:13.5px;">Manage registered hackers, view platform stats, and oversee saved card frames.</div>
+      </div>
+      <button class="btn btn-primary" id="adminCreateUserBtn">
+        <span>➕</span> Add New User / Admin
+      </button>
+    </div>
+
+    <!-- Admin Metrics Row -->
+    <div class="admin-metrics">
+      <div class="metric-card">
+        <div class="metric-icon">👥</div>
+        <div>
+          <div class="metric-val" id="metricTotalUsers">0</div>
+          <div class="metric-lbl">Registered Users</div>
+        </div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-icon">🖼️</div>
+        <div>
+          <div class="metric-val" id="metricTotalFrames">0</div>
+          <div class="metric-lbl">Saved Cards/Frames</div>
+        </div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-icon">💻</div>
+        <div>
+          <div class="metric-val" id="metricActiveHackers">0</div>
+          <div class="metric-lbl">Active Hackers</div>
+        </div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-icon">🔑</div>
+        <div>
+          <div class="metric-val" id="metricAdminCount">0</div>
+          <div class="metric-lbl">Platform Admins</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Admin User Toolbar -->
+    <div class="admin-toolbar">
+      <div class="search-box" style="max-width:360px; width:100%;">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="adminUserSearch" placeholder="Search user by name, email, or handle...">
+      </div>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <select id="adminRoleFilter" class="btn" style="padding:9px 14px; outline:none;">
+          <option value="ALL">All Roles</option>
+          <option value="Full Stack Developer">Full Stack Developer</option>
+          <option value="Frontend Developer">Frontend Developer</option>
+          <option value="Backend Developer">Backend Developer</option>
+          <option value="UI/UX Designer">UI/UX Designer</option>
+          <option value="AI/ML Engineer">AI/ML Engineer</option>
+          <option value="Platform Admin">Platform Admin</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Admin Users Data Table -->
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>User Info</th>
+            <th>Email</th>
+            <th>Team &amp; Role</th>
+            <th>Saved Cards</th>
+            <th>Status / Access</th>
+            <th style="text-align:right;">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="adminUsersTableBody">
+          <!-- Dynamically filled by JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
   <footer>
     HHGOA · Hacker House Goa · Team Frame &amp; ID Card Platform · Built with #FrameInGoa @247pmstudio
   </footer>
@@ -933,53 +1256,178 @@
   </div>
 </div>
 
-<!-- SHARE MODAL -->
+<!-- ENHANCED SHARE & DRAFT MODAL -->
 <div class="modal-backdrop" id="shareModal">
-  <div class="modal-card">
+  <div class="modal-card wide-modal">
     <div class="modal-header">
-      <h3 class="modal-title">Share Image &amp; Caption</h3>
+      <h3 class="modal-title">🚀 Draft Post &amp; Share Frame</h3>
       <button class="modal-close" id="shareModalClose">&times;</button>
     </div>
     <div class="modal-body">
-      <img src="" alt="Frame Preview" class="share-preview-img" id="shareModalPreviewImg">
       
-      <div style="font-size:12px; font-weight:600; color:var(--muted); margin-bottom:6px;">POST CAPTION &amp; HASHTAGS</div>
-      <div class="caption-box">
-        <div class="caption-text" id="shareCaptionText">Locked in: Hacker House Goa #FrameInGoa #hackerhousegoa @247pmstudio</div>
-        <div class="share-action-buttons">
-          <button class="copy-caption-btn" id="copyCaptionBtn">
-            <span>📋</span> Copy Caption
-          </button>
-          <button class="copy-both-btn" id="copyBothBtn">
-            <span>🖼️+📋</span> Copy Image &amp; Caption
-          </button>
+      <!-- Live Draft Preview Box -->
+      <div style="font-size:12px; font-weight:700; color:var(--muted); margin-bottom:8px; text-transform:uppercase; letter-spacing:0.04em;">
+        🖼️ DRAFT PREVIEW (IMAGE &amp; CAPTION)
+      </div>
+      <div class="draft-preview-grid">
+        <div class="draft-img-wrap">
+          <img src="" alt="Draft Frame Preview" id="shareModalPreviewImg">
+        </div>
+        <div style="display:flex; flex-direction:column; justify-content:space-between;">
+          <label style="font-size:11.5px; font-weight:600; color:var(--muted); margin-bottom:4px;">Edit Caption &amp; Hashtags</label>
+          <textarea id="shareDraftCaption" class="caption-textarea">Locked in: Hacker House Goa #FrameInGoa #hackerhousegoa @247pmstudio</textarea>
+          <div class="share-action-buttons" style="margin-top:10px; margin-bottom:0;">
+            <button class="copy-caption-btn" id="copyCaptionBtn">
+              <span>📋</span> Copy Caption
+            </button>
+            <button class="copy-both-btn" id="copyBothBtn">
+              <span>🖼️+📋</span> Copy Image &amp; Caption
+            </button>
+          </div>
         </div>
       </div>
 
       <!-- Direct Native Share Button -->
       <button class="native-share-btn" id="nativeShareBtn">
-        <span>📲</span> Share Image + Caption to Apps
+        <span>📲</span> Direct Share Image + Caption to Device Apps
       </button>
 
-      <div style="font-size:12px; font-weight:600; color:var(--muted); margin:16px 0 8px 0;">SHARE DIRECTLY TO SOCIALS</div>
+      <!-- Direct Web Share Section -->
+      <div style="font-size:12px; font-weight:700; color:var(--muted); margin:18px 0 8px 0; text-transform:uppercase; letter-spacing:0.04em;">
+        ⚡ DIRECT SOCIAL POSTING
+      </div>
       <div class="social-grid">
-        <button class="social-btn" data-platform="instagram" id="shareModalInstagram">
-          <svg viewBox="0 0 24 24" fill="#E1306C"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-          Instagram
-        </button>
-        <button class="social-btn" data-platform="linkedin" id="shareModalLinkedin">
-          <svg viewBox="0 0 24 24" fill="#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.446-2.136 2.94v5.666H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 110-4.124 2.062 2.062 0 010 4.124zM7.114 20.452H3.56V9h3.554v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"/></svg>
-          LinkedIn
-        </button>
         <button class="social-btn" data-platform="twitter" id="shareModalTwitter">
           <svg viewBox="0 0 24 24" fill="#161B22"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          X (Twitter)
+          X (Twitter) Draft
         </button>
         <button class="social-btn" data-platform="whatsapp" id="shareModalWhatsapp">
           <svg viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.017 2C6.492 2 2 6.478 2 11.99c0 1.986.573 3.837 1.563 5.398L2.06 22.001l4.729-1.487a10.05 10.05 0 005.228 1.464h.005c5.524 0 10.017-4.478 10.017-9.988C22.038 6.477 17.545 2 12.017 2zm0 18.147h-.004a8.13 8.13 0 01-4.145-1.135l-.297-.176-3.083.971.988-3.076-.194-.316a8.106 8.106 0 01-1.246-4.428c0-4.482 3.641-8.128 8.184-8.128 2.187 0 4.243.854 5.79 2.404a8.14 8.14 0 012.401 5.734c0 4.483-3.642 8.15-8.394 8.15z"/></svg>
-          WhatsApp
+          WhatsApp Share
         </button>
       </div>
+
+      <!-- Platform Specific Guides (Instagram & LinkedIn Manual Posting) -->
+      <div style="font-size:12px; font-weight:700; color:var(--muted); margin:20px 0 8px 0; text-transform:uppercase; letter-spacing:0.04em;">
+        📸 INSTAGRAM &amp; LINKEDIN MANUAL POSTING GUIDES
+      </div>
+
+      <!-- Instagram Card Guide -->
+      <div class="platform-card ig-card">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div style="display:flex; align-items:center; gap:8px; font-weight:700; font-size:14px; color:#E1306C;">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="#E1306C"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            Instagram Posting Helper
+          </div>
+          <span class="platform-badge badge-warning">⚠️ Download &amp; Copy Required</span>
+        </div>
+        <div style="font-size:12px; color:var(--muted); margin-top:6px;">
+          Direct web posting is restricted by Instagram. Download your frame image and copy caption to post in 3 quick steps:
+        </div>
+        
+        <div class="manual-steps-list">
+          <div class="step-pill">
+            <span class="step-num">1</span>
+            <span>📥 Download PNG</span>
+          </div>
+          <div class="step-pill">
+            <span class="step-num">2</span>
+            <span>📋 Copy Caption</span>
+          </div>
+          <div class="step-pill">
+            <span class="step-num">3</span>
+            <span>📸 Upload on IG</span>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:8px; margin-top:8px;">
+          <button class="btn btn-sm btn-primary" id="igHelperDownloadBtn">📥 1. Download PNG</button>
+          <button class="btn btn-sm" id="igHelperCopyBtn">📋 2. Copy Caption</button>
+          <button class="btn btn-sm" id="igHelperOpenBtn" style="border-color:#E1306C; color:#E1306C;">📸 3. Open Instagram</button>
+        </div>
+      </div>
+
+      <!-- LinkedIn Card Guide -->
+      <div class="platform-card li-card">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div style="display:flex; align-items:center; gap:8px; font-weight:700; font-size:14px; color:#0A66C2;">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.446-2.136 2.94v5.666H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 110-4.124 2.062 2.062 0 010 4.124zM7.114 20.452H3.56V9h3.554v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"/></svg>
+            LinkedIn Post Helper
+          </div>
+          <span class="platform-badge badge-info">💼 Web Link + Attach Image</span>
+        </div>
+        <div style="font-size:12px; color:var(--muted); margin-top:6px;">
+          LinkedIn web share pre-opens text box. Your image is auto-copied to clipboard &amp; saved to attach manually.
+        </div>
+        
+        <div style="display:flex; gap:8px; margin-top:10px;">
+          <button class="btn btn-sm btn-primary" id="liHelperOpenBtn" style="background:#0A66C2;">💼 Open LinkedIn Draft</button>
+          <button class="btn btn-sm" id="liHelperCopyBtn">📋 Copy Caption</button>
+          <button class="btn btn-sm" id="liHelperDownloadBtn">📥 Download PNG</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN MODAL: VIEW USER FRAMES -->
+<div class="modal-backdrop" id="adminUserFramesModal">
+  <div class="modal-card wide-modal">
+    <div class="modal-header">
+      <h3 class="modal-title" id="adminUserFramesTitle">User Saved Frames</h3>
+      <button class="modal-close" id="adminUserFramesClose">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="showcase-grid" id="adminUserFramesGrid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));">
+        <!-- Filled dynamically -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN MODAL: CREATE USER / ADMIN -->
+<div class="modal-backdrop" id="adminAddUserModal">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3 class="modal-title">➕ Add New User or Admin</h3>
+      <button class="modal-close" id="adminAddUserClose">&times;</button>
+    </div>
+    <div class="modal-body">
+      <form id="adminAddUserForm">
+        <div class="field">
+          <label for="adminNewName">Full Name</label>
+          <input type="text" id="adminNewName" placeholder="e.g. Vikramaditya Rao" required>
+        </div>
+        <div class="field">
+          <label for="adminNewEmail">Email Address</label>
+          <input type="email" id="adminNewEmail" placeholder="vikram@hhgoa.dev" required>
+        </div>
+        <div class="field">
+          <label for="adminNewPassword">Password</label>
+          <input type="password" id="adminNewPassword" placeholder="••••••••" required minlength="6">
+        </div>
+        <div class="field">
+          <label for="adminNewTeam">Team Handle</label>
+          <input type="text" id="adminNewTeam" placeholder="e.g. @dev_goa" required>
+        </div>
+        <div class="field">
+          <label for="adminNewRole">Role</label>
+          <select id="adminNewRole">
+            <option>Full Stack Developer</option>
+            <option>Frontend Developer</option>
+            <option>Backend Developer</option>
+            <option>UI/UX Designer</option>
+            <option>AI/ML Engineer</option>
+            <option>Platform Admin</option>
+          </select>
+        </div>
+        <div class="field" style="display:flex; align-items:center; gap:8px;">
+          <input type="checkbox" id="adminNewIsAdmin" style="width:auto;">
+          <label for="adminNewIsAdmin" style="margin:0; cursor:pointer;">Grant Admin Privileges 🔑</label>
+        </div>
+        <button type="submit" class="download-btn" style="margin-top:12px;">Create Platform Account</button>
+      </form>
     </div>
   </div>
 </div>
@@ -1584,7 +2032,6 @@
     ctx.textAlign = 'right';
     ctx.fillText('AUTHORIZED TEAM MEMBER', cardX + cardW - 30, footY + 32);
     ctx.restore();
-
     ctx.restore();
 
     ctx.save();
@@ -1593,6 +2040,258 @@
     ctx.strokeStyle = '#DEE3EC';
     ctx.stroke();
     ctx.restore();
+  }
+
+  // ---------- ADMIN DASHBOARD MANAGEMENT SYSTEM ----------
+  const adminUsersTableBody = document.getElementById('adminUsersTableBody');
+  const adminUserSearch = document.getElementById('adminUserSearch');
+  const adminRoleFilter = document.getElementById('adminRoleFilter');
+
+  const metricTotalUsers = document.getElementById('metricTotalUsers');
+  const metricTotalFrames = document.getElementById('metricTotalFrames');
+  const metricActiveHackers = document.getElementById('metricActiveHackers');
+  const metricAdminCount = document.getElementById('metricAdminCount');
+
+  const adminCreateUserBtn = document.getElementById('adminCreateUserBtn');
+  const adminAddUserModal = document.getElementById('adminAddUserModal');
+  const adminAddUserClose = document.getElementById('adminAddUserClose');
+  const adminAddUserForm = document.getElementById('adminAddUserForm');
+
+  const adminUserFramesModal = document.getElementById('adminUserFramesModal');
+  const adminUserFramesClose = document.getElementById('adminUserFramesClose');
+  const adminUserFramesGrid = document.getElementById('adminUserFramesGrid');
+  const adminUserFramesTitle = document.getElementById('adminUserFramesTitle');
+
+  if(adminUserSearch) adminUserSearch.addEventListener('input', renderAdminView);
+  if(adminRoleFilter) adminRoleFilter.addEventListener('change', renderAdminView);
+
+  if(adminCreateUserBtn){
+    adminCreateUserBtn.addEventListener('click', () => adminAddUserModal.classList.add('show'));
+  }
+  if(adminAddUserClose){
+    adminAddUserClose.addEventListener('click', () => adminAddUserModal.classList.remove('show'));
+  }
+  if(adminAddUserModal){
+    adminAddUserModal.addEventListener('click', (e) => {
+      if(e.target === adminAddUserModal) adminAddUserModal.classList.remove('show');
+    });
+  }
+
+  if(adminUserFramesClose){
+    adminUserFramesClose.addEventListener('click', () => adminUserFramesModal.classList.remove('show'));
+  }
+  if(adminUserFramesModal){
+    adminUserFramesModal.addEventListener('click', (e) => {
+      if(e.target === adminUserFramesModal) adminUserFramesModal.classList.remove('show');
+    });
+  }
+
+  if(adminAddUserForm){
+    adminAddUserForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('adminNewName').value.trim();
+      const email = document.getElementById('adminNewEmail').value.trim();
+      const password = document.getElementById('adminNewPassword').value;
+      const teamName = document.getElementById('adminNewTeam').value.trim();
+      const role = document.getElementById('adminNewRole').value;
+      const isAdmin = document.getElementById('adminNewIsAdmin').checked;
+
+      const users = getUsers();
+      if(users.some(u => u.email.toLowerCase() === email.toLowerCase())){
+        alert('User with this email already exists!');
+        return;
+      }
+
+      const newUser = {
+        id: 'u_' + Date.now(),
+        name,
+        email,
+        password,
+        teamName: teamName.startsWith('@') ? teamName : '@' + teamName,
+        role,
+        isAdmin: isAdmin || role === 'Platform Admin',
+        photoUrl: '',
+        createdAt: Date.now()
+      };
+
+      users.push(newUser);
+      saveUsers(users);
+      adminAddUserModal.classList.remove('show');
+      adminAddUserForm.reset();
+      renderAdminView();
+      showToast(`Added user ${name} to platform! 👑`);
+    });
+  }
+
+  function renderAdminView() {
+    const users = getUsers();
+    const frames = getSavedFrames();
+
+    // Update Top Metric Cards
+    if(metricTotalUsers) metricTotalUsers.textContent = users.length;
+    if(metricTotalFrames) metricTotalFrames.textContent = frames.length;
+    if(metricActiveHackers) metricActiveHackers.textContent = users.filter(u => !u.isAdmin && u.role !== 'Platform Admin').length;
+    if(metricAdminCount) metricAdminCount.textContent = users.filter(u => u.isAdmin || u.role === 'Platform Admin').length;
+
+    if(!adminUsersTableBody) return;
+    adminUsersTableBody.innerHTML = '';
+
+    const searchQuery = adminUserSearch ? adminUserSearch.value.trim().toLowerCase() : '';
+    const selectedRole = adminRoleFilter ? adminRoleFilter.value : 'ALL';
+
+    let filteredUsers = users;
+
+    if(searchQuery){
+      filteredUsers = filteredUsers.filter(u => 
+        u.name.toLowerCase().includes(searchQuery) ||
+        u.email.toLowerCase().includes(searchQuery) ||
+        (u.teamName && u.teamName.toLowerCase().includes(searchQuery))
+      );
+    }
+
+    if(selectedRole !== 'ALL'){
+      filteredUsers = filteredUsers.filter(u => u.role === selectedRole);
+    }
+
+    if(filteredUsers.length === 0){
+      adminUsersTableBody.innerHTML = `
+        <tr>
+          <td colspan="6" style="text-align:center; padding:32px; color:var(--muted);">
+            No users match the search filter.
+          </td>
+        </tr>
+      `;
+      return;
+    }
+
+    filteredUsers.forEach(u => {
+      const tr = document.createElement('tr');
+      const userFramesCount = frames.filter(f => f.userId === u.id || f.userName === u.name).length;
+      const isAdminUser = u.isAdmin || u.role === 'Platform Admin';
+
+      const avatarHtml = u.photoUrl 
+        ? `<img src="${u.photoUrl}" class="user-cell-avatar" alt="${u.name}">`
+        : `<div class="user-cell-avatar">${u.name.charAt(0).toUpperCase()}</div>`;
+
+      tr.innerHTML = `
+        <td>
+          <div class="user-cell">
+            ${avatarHtml}
+            <div>
+              <div style="font-weight:700;">${u.name} ${isAdminUser ? '👑' : ''}</div>
+              <div style="font-size:11.5px; color:var(--muted); font-family:'JetBrains Mono', monospace;">ID: ${u.id}</div>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div style="font-weight:500; font-family:'JetBrains Mono', monospace; font-size:12.5px;">${u.email}</div>
+        </td>
+        <td>
+          <div style="font-weight:600;">${u.teamName || '@hacker'}</div>
+          <span class="role-badge ${isAdminUser ? 'admin-badge' : ''}">${u.role || 'Member'}</span>
+        </td>
+        <td>
+          <span class="role-badge" style="background:#EEF2FF; color:#2454E8; font-weight:700;">
+            🖼️ ${userFramesCount} saved
+          </span>
+        </td>
+        <td>
+          ${isAdminUser 
+            ? '<span class="platform-badge badge-success">👑 Administrator</span>' 
+            : '<span class="platform-badge badge-info">👤 Hacker</span>'}
+        </td>
+        <td style="text-align:right;">
+          <div class="action-btn-group" style="justify-content:flex-end;">
+            <button class="btn btn-sm view-frames-btn" data-userid="${u.id}" data-username="${u.name}">
+              👁️ Frames (${userFramesCount})
+            </button>
+            <button class="btn btn-sm toggle-admin-btn" data-userid="${u.id}">
+              ${isAdminUser ? 'Remove Admin' : 'Make Admin 👑'}
+            </button>
+            <button class="btn btn-sm delete-user-btn" data-userid="${u.id}" data-username="${u.name}" style="color:#B91C1C; border-color:#FCA5A5;">
+              🗑️ Delete
+            </button>
+          </div>
+        </td>
+      `;
+
+      // Attach button event listeners
+      tr.querySelector('.view-frames-btn').addEventListener('click', () => {
+        showUserFramesInModal(u.id, u.name);
+      });
+
+      tr.querySelector('.toggle-admin-btn').addEventListener('click', () => {
+        toggleAdminStatus(u.id);
+      });
+
+      tr.querySelector('.delete-user-btn').addEventListener('click', () => {
+        deleteUserFromAdmin(u.id, u.name);
+      });
+
+      adminUsersTableBody.appendChild(tr);
+    });
+  }
+
+  function toggleAdminStatus(userId){
+    const users = getUsers();
+    const user = users.find(u => u.id === userId);
+    if(user){
+      user.isAdmin = !user.isAdmin;
+      saveUsers(users);
+      
+      const curr = getCurrentUser();
+      if(curr && curr.id === userId){
+        curr.isAdmin = user.isAdmin;
+        setCurrentUser(curr);
+      }
+
+      renderAdminView();
+      showToast(`Updated admin status for ${user.name}! 👑`);
+    }
+  }
+
+  function deleteUserFromAdmin(userId, userName){
+    if(!confirm(`Are you sure you want to delete user "${userName}"? This cannot be undone.`)) return;
+
+    let users = getUsers();
+    users = users.filter(u => u.id !== userId);
+    saveUsers(users);
+
+    const curr = getCurrentUser();
+    if(curr && curr.id === userId){
+      setCurrentUser(null);
+    }
+
+    renderAdminView();
+    showToast(`User "${userName}" deleted from platform. 🗑️`);
+  }
+
+  function showUserFramesInModal(userId, userName){
+    adminUserFramesTitle.textContent = `Frames & Cards saved by ${userName}`;
+    adminUserFramesGrid.innerHTML = '';
+
+    const frames = getSavedFrames().filter(f => f.userId === userId || f.userName === userName);
+
+    if(frames.length === 0){
+      adminUserFramesGrid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:30px; color:var(--muted);">No saved frames found for this user.</div>`;
+    } else {
+      frames.forEach(f => {
+        const card = document.createElement('div');
+        card.className = 'user-card';
+        card.innerHTML = `
+          <div class="card-image-wrap">
+            <img src="${f.imageUrl}" alt="${f.userName} Frame">
+          </div>
+          <div style="padding:10px; font-size:12px;">
+            <div style="font-weight:700;">${f.userTeam}</div>
+            <div style="color:var(--muted);">${new Date(f.createdAt).toLocaleDateString()}</div>
+          </div>
+        `;
+        adminUserFramesGrid.appendChild(card);
+      });
+    }
+
+    adminUserFramesModal.classList.add('show');
   }
 
   function render(){
@@ -1604,10 +2303,12 @@
   const tabId = document.getElementById('tabId');
   const tabShowcase = document.getElementById('tabShowcase');
   const tabMySaved = document.getElementById('tabMySaved');
+  const tabAdmin = document.getElementById('tabAdmin');
 
   const viewGenerator = document.getElementById('viewGenerator');
   const viewShowcase = document.getElementById('viewShowcase');
   const viewMySaved = document.getElementById('viewMySaved');
+  const viewAdmin = document.getElementById('viewAdmin');
 
   function switchTab(targetView, targetMode){
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -1631,6 +2332,10 @@
       tabMySaved.classList.add('active');
       viewMySaved.classList.add('active');
       renderMySavedGrid();
+    } else if(targetView === 'admin'){
+      tabAdmin.classList.add('active');
+      viewAdmin.classList.add('active');
+      renderAdminView();
     }
   }
 
@@ -1638,6 +2343,14 @@
   tabId.addEventListener('click', () => switchTab('generator', 'id'));
   tabShowcase.addEventListener('click', () => switchTab('showcase'));
   tabMySaved.addEventListener('click', () => switchTab('my-saved'));
+  tabAdmin.addEventListener('click', () => switchTab('admin'));
+
+  function handleHashRoute(){
+    if(window.location.hash === '#admin'){
+      switchTab('admin');
+    }
+  }
+  window.addEventListener('hashchange', handleHashRoute);
 
   // ---------- USER AUTHENTICATION STATE & SYSTEM ----------
   function getUsers(){
@@ -1675,11 +2388,22 @@
     localStorage.setItem('hhgoa_user_frames', JSON.stringify(frames));
   }
 
-  // Seed sample users & frames if empty
+  // Seed sample users & frames if empty (including Platform Admin)
   (function seedInitialData(){
     let users = getUsers();
     if(users.length === 0){
       users = [
+        {
+          id: 'u_admin',
+          name: 'Platform Admin',
+          email: 'admin@hhgoa.dev',
+          password: 'admin123',
+          teamName: '@hhgoa_admin',
+          role: 'Platform Admin',
+          isAdmin: true,
+          photoUrl: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=400&q=80',
+          createdAt: Date.now() - 86400000 * 10
+        },
         {
           id: 'u1',
           name: 'Alex Rivera',
@@ -1687,7 +2411,8 @@
           password: 'password123',
           teamName: '@hack_goa',
           role: 'Full Stack Developer',
-          photoUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80'
+          photoUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
+          createdAt: Date.now() - 86400000 * 5
         },
         {
           id: 'u2',
@@ -1696,7 +2421,8 @@
           password: 'password123',
           teamName: '@cyber_dev',
           role: 'Frontend Developer',
-          photoUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80'
+          photoUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80',
+          createdAt: Date.now() - 86400000 * 3
         },
         {
           id: 'u3',
@@ -1705,7 +2431,8 @@
           password: 'password123',
           teamName: '@build_goa',
           role: 'Backend Developer',
-          photoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80'
+          photoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
+          createdAt: Date.now() - 86400000 * 1
         }
       ];
       saveUsers(users);
@@ -1721,6 +2448,7 @@
 
     if(user){
       tabMySaved.style.display = 'inline-block';
+      if(user.isAdmin) tabAdmin.style.display = 'inline-block';
       autofillProfileBtn.style.display = 'inline-flex';
 
       const userBadge = document.createElement('div');
@@ -1734,13 +2462,14 @@
       userBadge.innerHTML = `
         ${avatarHtml}
         <div class="user-info">
-          <div class="user-name">${user.name}</div>
+          <div class="user-name">${user.name} ${user.isAdmin ? '👑' : ''}</div>
           <div class="user-handle">${user.teamName || '@hacker'}</div>
         </div>
         <span style="font-size:11px; color:var(--muted); margin-left:4px;">▼</span>
         <div class="dropdown-menu" id="userDropdown">
           <div class="dropdown-item" id="menuAutofill">⚡ Fill Form with My Info</div>
           <div class="dropdown-item" id="menuMySaved">⭐ My Saved Cards</div>
+          ${user.isAdmin ? '<div class="dropdown-item" id="menuAdminDash">🛡️ Admin Dashboard</div>' : ''}
           <div class="dropdown-divider"></div>
           <div class="dropdown-item" id="menuSignOut" style="color:#B91C1C;">🚪 Sign Out</div>
         </div>
@@ -1758,26 +2487,24 @@
 
       userBadge.querySelector('#menuAutofill').addEventListener('click', () => autofillProfile(user));
       userBadge.querySelector('#menuMySaved').addEventListener('click', () => switchTab('my-saved'));
+      if(user.isAdmin) userBadge.querySelector('#menuAdminDash').addEventListener('click', () => switchTab('admin'));
       userBadge.querySelector('#menuSignOut').addEventListener('click', () => {
         setCurrentUser(null);
-        showToast('Signed out successfully 👋');
+        switchTab('generator', 'frame');
+        showToast('Signed out successfully! 👋');
       });
     } else {
       tabMySaved.style.display = 'none';
+      tabAdmin.style.display = 'none';
       autofillProfileBtn.style.display = 'none';
 
-      const signInBtn = document.createElement('button');
-      signInBtn.className = 'btn';
-      signInBtn.textContent = 'Sign In';
-      signInBtn.addEventListener('click', () => openAuthModal('signin'));
+      authNav.innerHTML = `
+        <button class="btn btn-sm" id="btnSignInTrigger">Sign In</button>
+        <button class="btn btn-primary btn-sm" id="btnRegisterTrigger">Register</button>
+      `;
 
-      const registerBtn = document.createElement('button');
-      registerBtn.className = 'btn btn-primary';
-      registerBtn.textContent = 'Register';
-      registerBtn.addEventListener('click', () => openAuthModal('register'));
-
-      authNav.appendChild(signInBtn);
-      authNav.appendChild(registerBtn);
+      document.getElementById('btnSignInTrigger').addEventListener('click', () => openAuthModal('signin'));
+      document.getElementById('btnRegisterTrigger').addEventListener('click', () => openAuthModal('register'));
     }
   }
 
@@ -1787,15 +2514,16 @@
     hashNameEl.value = user.teamName || '';
     emailEl.value = user.email || '';
     if(user.role){
-      if([...roleEl.options].some(o => o.value === user.role)){
+      if(Array.from(roleEl.options).some(o => o.value === user.role)){
         roleEl.value = user.role;
         customRoleField.style.display = 'none';
       } else {
         roleEl.value = 'Others';
-        customRoleEl.value = user.role;
         customRoleField.style.display = 'block';
+        customRoleEl.value = user.role;
       }
     }
+
     if(user.photoUrl){
       const image = new Image();
       image.crossOrigin = 'anonymous';
@@ -1902,7 +2630,8 @@
       password,
       teamName: teamName.startsWith('@') ? teamName : '@' + teamName,
       role,
-      photoUrl: ''
+      photoUrl: '',
+      createdAt: Date.now()
     };
 
     users.push(newUser);
@@ -1956,7 +2685,7 @@
       userPhoto: user.photoUrl || '',
       frameType: mode,
       imageUrl: dataUrl,
-      caption: 'Locked in: Hacker House Goa #FrameInGoa #hackerhousegoa @247pmstudio',
+      caption: shareDraftCaption ? shareDraftCaption.value : 'Locked in: Hacker House Goa #FrameInGoa #hackerhousegoa @247pmstudio',
       createdAt: Date.now()
     };
 
@@ -1967,18 +2696,20 @@
     if(notify) showToast('Saved to Profile & Community Showcase Gallery! 💾');
   }
 
-  // ---------- SHARE MODAL & CAPTION / IMAGE SYSTEM ----------
+  // ---------- ENHANCED SHARE MODAL & LIVE DRAFT SYSTEM ----------
   const EXACT_CAPTION = "Locked in: Hacker House Goa #FrameInGoa #hackerhousegoa @247pmstudio";
 
   const shareModal = document.getElementById('shareModal');
   const shareModalClose = document.getElementById('shareModalClose');
   const shareModalPreviewImg = document.getElementById('shareModalPreviewImg');
+  const shareDraftCaption = document.getElementById('shareDraftCaption');
   const copyCaptionBtn = document.getElementById('copyCaptionBtn');
   const copyBothBtn = document.getElementById('copyBothBtn');
   const nativeShareBtn = document.getElementById('nativeShareBtn');
-  const shareCaptionText = document.getElementById('shareCaptionText');
 
-  shareCaptionText.textContent = EXACT_CAPTION;
+  function getActiveCaption(){
+    return shareDraftCaption ? shareDraftCaption.value.trim() : EXACT_CAPTION;
+  }
 
   shareTriggerBtn.addEventListener('click', () => {
     if(shareTriggerBtn.disabled) return;
@@ -1993,25 +2724,27 @@
   });
 
   copyCaptionBtn.addEventListener('click', () => {
-    navigator.clipboard.writeText(EXACT_CAPTION).then(() => {
+    const caption = getActiveCaption();
+    navigator.clipboard.writeText(caption).then(() => {
       showToast('Caption copied to clipboard! 📋');
     });
   });
 
   // Copy BOTH Image & Caption to Clipboard
   copyBothBtn.addEventListener('click', async () => {
+    const caption = getActiveCaption();
     try {
       canvas.toBlob(async (blob) => {
         if(!blob) return;
         const item = new ClipboardItem({
           'image/png': blob,
-          'text/plain': new Blob([EXACT_CAPTION], { type: 'text/plain' })
+          'text/plain': new Blob([caption], { type: 'text/plain' })
         });
         await navigator.clipboard.write([item]);
         showToast('Copied IMAGE & CAPTION to clipboard! 🖼️+📋 (Press Ctrl+V / Cmd+V in draft)');
       }, 'image/png');
     } catch(err) {
-      await navigator.clipboard.writeText(EXACT_CAPTION);
+      await navigator.clipboard.writeText(caption);
       const link = document.createElement('a');
       link.download = fileBaseName();
       link.href = shareModalPreviewImg.src;
@@ -2022,6 +2755,7 @@
 
   // Native Device Share (Shares File + Text together)
   nativeShareBtn.addEventListener('click', async () => {
+    const caption = getActiveCaption();
     canvas.toBlob(async (blob) => {
       if(!blob) return;
       const fileName = fileBaseName();
@@ -2031,7 +2765,7 @@
         try {
           await navigator.share({
             title: 'Hacker House Goa Frame',
-            text: EXACT_CAPTION,
+            text: caption,
             files: [file]
           });
           showToast('Shared successfully! 🎉');
@@ -2046,6 +2780,55 @@
     }, 'image/png');
   });
 
+  // Instagram Helper Handlers
+  document.getElementById('igHelperDownloadBtn').addEventListener('click', () => {
+    const link = document.createElement('a');
+    link.download = fileBaseName();
+    link.href = shareModalPreviewImg.src;
+    link.click();
+    showToast('Downloaded Frame PNG for Instagram! 📥');
+  });
+
+  document.getElementById('igHelperCopyBtn').addEventListener('click', () => {
+    navigator.clipboard.writeText(getActiveCaption()).then(() => {
+      showToast('Caption copied for Instagram! 📋');
+    });
+  });
+
+  document.getElementById('igHelperOpenBtn').addEventListener('click', () => {
+    const caption = getActiveCaption();
+    navigator.clipboard.writeText(caption);
+    const link = document.createElement('a');
+    link.download = fileBaseName();
+    link.href = shareModalPreviewImg.src;
+    link.click();
+    window.open('https://www.instagram.com', '_blank', 'noopener,noreferrer');
+    showToast('Opened Instagram! Image downloaded & caption copied — paste & upload! 📸');
+  });
+
+  // LinkedIn Helper Handlers
+  document.getElementById('liHelperOpenBtn').addEventListener('click', () => {
+    const caption = getActiveCaption();
+    navigator.clipboard.writeText(caption);
+    const pageUrl = encodeURIComponent(location.href);
+    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`, '_blank', 'noopener,noreferrer');
+    showToast('Opened LinkedIn! Caption copied & PNG ready to attach 💼');
+  });
+
+  document.getElementById('liHelperCopyBtn').addEventListener('click', () => {
+    navigator.clipboard.writeText(getActiveCaption()).then(() => {
+      showToast('Caption copied for LinkedIn! 📋');
+    });
+  });
+
+  document.getElementById('liHelperDownloadBtn').addEventListener('click', () => {
+    const link = document.createElement('a');
+    link.download = fileBaseName();
+    link.href = shareModalPreviewImg.src;
+    link.click();
+    showToast('Downloaded PNG for LinkedIn! 📥');
+  });
+
   // Social Share handlers
   document.querySelectorAll('.social-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -2057,17 +2840,17 @@
   const isMobileUA = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
   async function shareToPlatform(platform, imageUrl){
+    const caption = getActiveCaption();
     canvas.toBlob(async (blob) => {
       if(!blob) return;
       const fileName = fileBaseName();
       const file = new File([blob], fileName, { type: 'image/png' });
 
-      // On Mobile devices, attempt native share with actual image file + text payload first
       if(isMobileUA && navigator.canShare && navigator.canShare({ files: [file] })){
         try {
           await navigator.share({
             title: 'Hacker House Goa Frame',
-            text: EXACT_CAPTION,
+            text: caption,
             files: [file]
           });
           return;
@@ -2076,25 +2859,22 @@
         }
       }
 
-      // Copy image blob & text to clipboard for instant Ctrl+V / Cmd+V paste on PC
       try {
         const item = new ClipboardItem({
           'image/png': blob,
-          'text/plain': new Blob([EXACT_CAPTION], { type: 'text/plain' })
+          'text/plain': new Blob([caption], { type: 'text/plain' })
         });
         await navigator.clipboard.write([item]);
       } catch(e) {
-        try { await navigator.clipboard.writeText(EXACT_CAPTION); } catch(e2){}
+        try { await navigator.clipboard.writeText(caption); } catch(e2){}
       }
 
-      // Auto-download image file so user has PNG ready in gallery/downloads
       const a = document.createElement('a');
       a.href = imageUrl;
       a.download = fileName;
       a.click();
 
-      // Platform specific Web/App deep linking
-      const textEncoded = encodeURIComponent(EXACT_CAPTION);
+      const textEncoded = encodeURIComponent(caption);
 
       if(platform === 'twitter'){
         if(isMobileUA){
@@ -2105,28 +2885,7 @@
         } else {
           window.open(`https://twitter.com/intent/tweet?text=${textEncoded}`, '_blank', 'noopener,noreferrer');
         }
-        showToast('Opened X (Twitter)! Image & caption copied — press Ctrl+V to attach image 🚀');
-      } else if(platform === 'instagram'){
-        if(isMobileUA){
-          window.location.href = 'instagram://app';
-          setTimeout(() => {
-            window.open('https://www.instagram.com', '_blank', 'noopener,noreferrer');
-          }, 1200);
-        } else {
-          window.open('https://www.instagram.com', '_blank', 'noopener,noreferrer');
-        }
-        alert('Opened Instagram! 📸\n\n1. Your frame image is downloaded to your device.\n2. Your caption is copied to clipboard: "Locked in: Hacker House Goa #FrameInGoa #hackerhousegoa @247pmstudio"\n3. Click Create (+) on Instagram, select your downloaded frame image, and paste (Ctrl+V / Cmd+V) your caption!');
-      } else if(platform === 'linkedin'){
-        const pageUrl = encodeURIComponent(location.href);
-        if(isMobileUA){
-          window.location.href = `linkedin://sharing/share-offsite/?url=${pageUrl}`;
-          setTimeout(() => {
-            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`, '_blank', 'noopener,noreferrer');
-          }, 1200);
-        } else {
-          window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`, '_blank', 'noopener,noreferrer');
-        }
-        showToast('Opened LinkedIn! Image & caption copied — press Ctrl+V to attach 💼');
+        showToast('Opened X (Twitter)! Image & caption copied — press Ctrl+V to attach 🚀');
       } else if(platform === 'whatsapp'){
         if(isMobileUA){
           window.location.href = `whatsapp://send?text=${textEncoded}`;
