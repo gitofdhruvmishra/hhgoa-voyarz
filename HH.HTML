@@ -589,18 +589,46 @@
     color: var(--ink);
     line-height: 1.5;
     word-break: break-word;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
-  .copy-caption-btn {
+
+  .share-action-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .native-share-btn {
+    grid-column: 1 / -1;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    background: linear-gradient(135deg, #2454E8, #15318F);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(36,84,232,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: transform 0.12s ease;
+  }
+  .native-share-btn:hover { transform: translateY(-1px); }
+
+  .copy-caption-btn, .copy-both-btn {
     width: 100%;
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
-    font-size: 13.5px;
+    font-size: 13px;
     background: var(--surface);
     color: var(--primary);
     border: 1.5px solid var(--primary);
     border-radius: 8px;
-    padding: 8px;
+    padding: 9px 8px;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -608,7 +636,7 @@
     gap: 6px;
     transition: all 0.12s ease;
   }
-  .copy-caption-btn:hover { background: var(--primary); color: #fff; }
+  .copy-caption-btn:hover, .copy-both-btn:hover { background: var(--primary); color: #fff; }
 
   .social-grid {
     display: grid;
@@ -800,7 +828,7 @@
             <span>📥</span> Download PNG
           </button>
           <button class="share-trigger-btn" id="shareTriggerBtn" disabled>
-            <span>🚀</span> Share Frame (Socials)
+            <span>🚀</span> Share Frame (Image &amp; Caption)
           </button>
           <button class="save-showcase-btn" id="saveShowcaseBtn" disabled>
             <span>💾</span> Save to Profile &amp; Showcase Gallery
@@ -921,7 +949,7 @@
 <div class="modal-backdrop" id="shareModal">
   <div class="modal-card">
     <div class="modal-header">
-      <h3 class="modal-title">Share Your Frame</h3>
+      <h3 class="modal-title">Share Image &amp; Caption</h3>
       <button class="modal-close" id="shareModalClose">&times;</button>
     </div>
     <div class="modal-body">
@@ -930,12 +958,22 @@
       <div style="font-size:12px; font-weight:600; color:var(--muted); margin-bottom:6px;">POST CAPTION &amp; HASHTAGS</div>
       <div class="caption-box">
         <div class="caption-text" id="shareCaptionText">Locked in: Hacker House Goa #FrameInGoa #hackerhousegoa @247pmstudio</div>
-        <button class="copy-caption-btn" id="copyCaptionBtn">
-          <span>📋</span> Copy Caption &amp; Hashtags
-        </button>
+        <div class="share-action-buttons">
+          <button class="copy-caption-btn" id="copyCaptionBtn">
+            <span>📋</span> Copy Caption
+          </button>
+          <button class="copy-both-btn" id="copyBothBtn">
+            <span>🖼️+📋</span> Copy Image &amp; Caption
+          </button>
+        </div>
       </div>
 
-      <div style="font-size:12px; font-weight:600; color:var(--muted); margin-bottom:8px;">SHARE DIRECTLY TO</div>
+      <!-- Direct Native Share Button -->
+      <button class="native-share-btn" id="nativeShareBtn">
+        <span>📲</span> Share Image + Caption to Apps
+      </button>
+
+      <div style="font-size:12px; font-weight:600; color:var(--muted); margin:16px 0 8px 0;">SHARE DIRECTLY TO SOCIALS</div>
       <div class="social-grid">
         <button class="social-btn" data-platform="instagram" id="shareModalInstagram">
           <svg viewBox="0 0 24 24" fill="#E1306C"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
@@ -1619,8 +1657,6 @@
   tabMySaved.addEventListener('click', () => switchTab('my-saved'));
 
   // ---------- USER AUTHENTICATION STATE & SYSTEM ----------
-  // LocalStorage keys: hhgoa_users, hhgoa_current_user, hhgoa_user_frames
-
   function getUsers(){
     try {
       return JSON.parse(localStorage.getItem('hhgoa_users') || '[]');
@@ -1948,13 +1984,15 @@
     if(notify) showToast('Saved to Profile & Community Showcase Gallery! 💾');
   }
 
-  // ---------- SHARE MODAL & CAPTION SYSTEM ----------
+  // ---------- SHARE MODAL & CAPTION / IMAGE SYSTEM ----------
   const EXACT_CAPTION = "Locked in: Hacker House Goa #FrameInGoa #hackerhousegoa @247pmstudio";
 
   const shareModal = document.getElementById('shareModal');
   const shareModalClose = document.getElementById('shareModalClose');
   const shareModalPreviewImg = document.getElementById('shareModalPreviewImg');
   const copyCaptionBtn = document.getElementById('copyCaptionBtn');
+  const copyBothBtn = document.getElementById('copyBothBtn');
+  const nativeShareBtn = document.getElementById('nativeShareBtn');
   const shareCaptionText = document.getElementById('shareCaptionText');
 
   shareCaptionText.textContent = EXACT_CAPTION;
@@ -1977,6 +2015,56 @@
     });
   });
 
+  // Copy BOTH Image & Caption to Clipboard
+  copyBothBtn.addEventListener('click', async () => {
+    try {
+      canvas.toBlob(async (blob) => {
+        if(!blob) return;
+        const item = new ClipboardItem({
+          'image/png': blob,
+          'text/plain': new Blob([EXACT_CAPTION], { type: 'text/plain' })
+        });
+        await navigator.clipboard.write([item]);
+        showToast('Copied IMAGE & CAPTION to clipboard! 🖼️+📋 (Paste into any post composer)');
+      }, 'image/png');
+    } catch(err) {
+      // Fallback: copy caption + download image
+      await navigator.clipboard.writeText(EXACT_CAPTION);
+      const link = document.createElement('a');
+      link.download = fileBaseName();
+      link.href = shareModalPreviewImg.src;
+      link.click();
+      showToast('Downloaded Image & Copied Caption to clipboard! 📥+📋');
+    }
+  });
+
+  // Native Device Share (Shares File + Text together)
+  nativeShareBtn.addEventListener('click', async () => {
+    canvas.toBlob(async (blob) => {
+      if(!blob) return;
+      const fileName = fileBaseName();
+      const file = new File([blob], fileName, { type: 'image/png' });
+
+      if(navigator.canShare && navigator.canShare({ files: [file] })){
+        try {
+          await navigator.share({
+            title: 'Hacker House Goa Frame',
+            text: EXACT_CAPTION,
+            files: [file]
+          });
+          showToast('Shared successfully! 🎉');
+        } catch(err) {
+          if(err && err.name !== 'AbortError'){
+            showToast('Share failed. Use platform buttons below.');
+          }
+        }
+      } else {
+        // Fallback for browsers without file share support
+        copyBothBtn.click();
+      }
+    }, 'image/png');
+  });
+
   // Social Share handlers
   document.querySelectorAll('.social-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -1988,37 +2076,63 @@
   const isMobileUA = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
   async function shareToPlatform(platform, imageUrl){
-    // Copy caption first
-    try { await navigator.clipboard.writeText(EXACT_CAPTION); } catch(e){}
+    canvas.toBlob(async (blob) => {
+      if(!blob) return;
+      const fileName = fileBaseName();
+      const file = new File([blob], fileName, { type: 'image/png' });
 
-    const fileName = fileBaseName();
+      // First attempt native share with actual image file + text payload
+      if(navigator.canShare && navigator.canShare({ files: [file] })){
+        try {
+          await navigator.share({
+            title: 'Hacker House Goa Frame',
+            text: EXACT_CAPTION,
+            files: [file]
+          });
+          return;
+        } catch(err){
+          if(err && err.name === 'AbortError') return;
+        }
+      }
 
-    if(platform === 'twitter'){
-      const text = encodeURIComponent(EXACT_CAPTION);
-      window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank', 'noopener,noreferrer');
-      showToast('Caption copied! X (Twitter) opened 🚀');
-    } else if(platform === 'whatsapp'){
-      const text = encodeURIComponent(EXACT_CAPTION);
-      window.open(`https://wa.me/?text=${text}`, '_blank', 'noopener,noreferrer');
-      showToast('Caption copied! WhatsApp opened 💬');
-    } else if(platform === 'linkedin'){
-      const pageUrl = encodeURIComponent(location.href);
-      window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`, '_blank', 'noopener,noreferrer');
-      showToast('Caption copied! LinkedIn share opened 💼');
-    } else if(platform === 'instagram'){
-      // Download image for Instagram draft
+      // Copy image blob & text to clipboard
+      try {
+        const item = new ClipboardItem({
+          'image/png': blob,
+          'text/plain': new Blob([EXACT_CAPTION], { type: 'text/plain' })
+        });
+        await navigator.clipboard.write([item]);
+      } catch(e) {
+        try { await navigator.clipboard.writeText(EXACT_CAPTION); } catch(e2){}
+      }
+
+      // Download image file for local attach
       const a = document.createElement('a');
       a.href = imageUrl;
       a.download = fileName;
       a.click();
 
-      if(isMobileUA){
-        window.location.href = 'instagram://app';
-      } else {
-        window.open('https://www.instagram.com', '_blank', 'noopener,noreferrer');
+      if(platform === 'twitter'){
+        const text = encodeURIComponent(EXACT_CAPTION);
+        window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank', 'noopener,noreferrer');
+        showToast('Image downloaded & caption copied! Select image & paste in X (Twitter) 🚀');
+      } else if(platform === 'whatsapp'){
+        const text = encodeURIComponent(EXACT_CAPTION);
+        window.open(`https://wa.me/?text=${text}`, '_blank', 'noopener,noreferrer');
+        showToast('Image downloaded & caption copied! Attach image in WhatsApp 💬');
+      } else if(platform === 'linkedin'){
+        const pageUrl = encodeURIComponent(location.href);
+        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`, '_blank', 'noopener,noreferrer');
+        showToast('Image downloaded & caption copied! Attach image in LinkedIn 💼');
+      } else if(platform === 'instagram'){
+        if(isMobileUA){
+          window.location.href = 'instagram://app';
+        } else {
+          window.open('https://www.instagram.com', '_blank', 'noopener,noreferrer');
+        }
+        alert('Image downloaded & caption copied! 📸\n\nOpen Instagram, create a post/story, select your downloaded frame image and paste the caption: "Locked in: Hacker House Goa #FrameInGoa #hackerhousegoa @247pmstudio"!');
       }
-      alert('Image downloaded & caption copied! 📸\n\nOpen Instagram, create a new post or story, paste your copied caption: "Locked in: Hacker House Goa #FrameInGoa #hackerhousegoa @247pmstudio" and select your downloaded frame image!');
-    }
+    }, 'image/png');
   }
 
   // ---------- SHOWCASE & MY SAVED GRIDS ----------
@@ -2034,10 +2148,8 @@
     const frames = getSavedFrames();
     const users = getUsers();
 
-    // Combined items from users & frames
     let items = [];
 
-    // Add user items
     users.forEach(u => {
       items.push({
         id: u.id,
@@ -2049,7 +2161,6 @@
       });
     });
 
-    // Add saved frames
     frames.forEach(f => {
       items.unshift({
         id: f.id,
@@ -2061,7 +2172,6 @@
       });
     });
 
-    // Filter
     if(query){
       items = items.filter(i => 
         i.name.toLowerCase().includes(query) ||
@@ -2096,7 +2206,7 @@
         </div>
         <div class="card-actions">
           <button class="card-btn card-btn-primary card-download-btn">📥 Download</button>
-          <button class="card-btn card-share-btn">🚀 Share</button>
+          <button class="card-btn card-share-btn">🚀 Share Both</button>
         </div>
       `;
 
@@ -2149,7 +2259,7 @@
         </div>
         <div class="card-actions">
           <button class="card-btn card-btn-primary card-dl-btn">📥 Download</button>
-          <button class="card-btn card-sh-btn">🚀 Share</button>
+          <button class="card-btn card-sh-btn">🚀 Share Both</button>
         </div>
       `;
 
@@ -2181,7 +2291,7 @@
     if(toastTimer) clearTimeout(toastTimer);
     toastTimer = setTimeout(() => {
       toast.classList.remove('show');
-    }, 3000);
+    }, 3200);
   }
 
   // Ensure fonts ready before initial paint
